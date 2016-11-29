@@ -25,7 +25,7 @@ public class Main {
         linkedList1.add(new Node("hahaha",434));
         linkedList2.add(new Node("lisi",39));
         linkedList2.add(new Node("lisi",50));
-        linkedList2.add(new Node("lisi",251));
+        linkedList2.add(new Node("lisi",255));
         linkedList2.add(new Node("lisi",38210));
         linkedList3.add(new Node("wanger",1));
         linkedList3.add(new Node("wanger",501));

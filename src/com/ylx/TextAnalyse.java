@@ -31,7 +31,7 @@ public class TextAnalyse {
                         tempList.add(j, tempNode);
                         indexList.add(j,i);
                         break;
-                    }else if (j == tempList.size() - 1 && i != ListArray.length - 1){
+                    }else if (j == tempList.size() - 1){
                         tempList.add(tempNode);
                         indexList.add(j,i);
                         break;
@@ -47,11 +47,9 @@ public class TextAnalyse {
             if (tempList.size() == 0) break;
             Node node = tempList.removeFirst();
             int index = indexList.removeFirst();
-            System.out.println(node.getName()+"----"+node.getLocation());
             locationList.add(node);
             LinkedList<Node> list = ListArray[index];
             if (!(list.size() == 0 || tempList.size() == 0)) {
-                //System.out.println(tempList.size()+"----"+indexList.size());
                 Node TempNode = list.removeFirst();
                 insertNode(tempList, indexList, TempNode, index);
             }
@@ -78,7 +76,6 @@ public class TextAnalyse {
     public LinkedList<Node> getTextList(String Name){
         int NameLength  = Name.length();
         LinkedList<Node> NameList = new LinkedList<>();
-
         int i = 0;
         while (true){
             i = Article.indexOf(Name,i);
