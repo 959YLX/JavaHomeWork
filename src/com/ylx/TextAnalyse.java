@@ -1,8 +1,6 @@
 package com.ylx;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Vector;
 
 /**
  * Created by ylx on 16/11/26.
@@ -11,6 +9,7 @@ public class TextAnalyse {
 
     private String Article = null;
     private int ArticleLength = 0;
+
     public void setArticle(String article) {
         if (article != null) {
             Article = article;
@@ -18,7 +17,7 @@ public class TextAnalyse {
         }
     }
 
-    public  LinkedList<Node> getLocationList(LinkedList<Node>[] ListArray){
+    public LinkedList<Node> getLocationList(LinkedList<Node>[] ListArray){
         LinkedList<Node> locationList = new LinkedList<>();
         LinkedList<Node> tempList = new LinkedList<>();
         LinkedList<Integer> indexList = new LinkedList<>();
@@ -41,17 +40,39 @@ public class TextAnalyse {
                 }
             }else{
                 tempList.add(tempNode);
+                indexList.add(i);
             }
         }
-//        for (int i = 0; i < tempList.size(); i++) {
-//            Node node = tempList.removeFirst();
-//            int index = indexList.removeFirst();
-//            locationList.add(node);
-//            LinkedList<Node> temp = ListArray[index];
-//            Node tempNode = temp.removeFirst();
-//
-//        }
-        return tempList;
+        while (true) {
+            if (tempList.size() == 0) break;
+            Node node = tempList.removeFirst();
+            int index = indexList.removeFirst();
+            System.out.println(node.getName()+"----"+node.getLocation());
+            locationList.add(node);
+            LinkedList<Node> list = ListArray[index];
+            if (!(list.size() == 0 || tempList.size() == 0)) {
+                //System.out.println(tempList.size()+"----"+indexList.size());
+                Node TempNode = list.removeFirst();
+                insertNode(tempList, indexList, TempNode, index);
+            }
+        }
+        return locationList;
+    }
+
+    private void insertNode(LinkedList<Node> tempList,LinkedList<Integer> indexList,Node newNode,int index){
+        int j = 0;
+        while (true) {
+            if (newNode.getLocation() <= tempList.get(j).getLocation()) {
+                tempList.add(j, newNode);
+                indexList.add(j,index);
+                break;
+            }else if (j == tempList.size() - 1){
+                tempList.add(newNode);
+                indexList.add(j,index);
+                break;
+            }
+            j++;
+        }
     }
 
     public LinkedList<Node> getTextList(String Name){
