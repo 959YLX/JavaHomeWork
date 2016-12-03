@@ -1,6 +1,7 @@
-package com.ylx;
+package com.ylx.Analyse;
 
-/**
+/**a
+ * 线性表节点类，用于存储线性表节点信息
  * Created by ylx on 16/11/26.
  */
 public class Node {

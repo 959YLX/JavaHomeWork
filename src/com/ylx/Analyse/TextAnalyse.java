@@ -1,4 +1,4 @@
-package com.ylx;
+package com.ylx.Analyse;
 
 import java.util.LinkedList;
 
@@ -6,17 +6,19 @@ import java.util.LinkedList;
  * 字符串处理类，用于对文本字符串进行抽象化，根据姓名提取出位置线性表
  * Created by ylx on 16/11/26.
  */
-class TextAnalyse {
+public class TextAnalyse implements Runnable{
 
     private String Article = null;
 
-    void setArticle(String article) {
-        if (article != null) {
-            Article = article;
-        }
+    public TextAnalyse(){
+
     }
 
-    LinkedList<Node> getLocationList(String[] names){
+    private LinkedList<Node> getLocationList(String Article,String[] names){
+        if (Article == null || names == null) return null;
+        else{
+            this.Article = Article;
+        }
         LinkedList<Node>[] ListArray = new LinkedList[names.length];
         for (int i = 0; i < names.length; i++) {
             ListArray[i] = getTextList(names[i]);
@@ -67,7 +69,7 @@ class TextAnalyse {
     private void insertNode(LinkedList<Node> tempList,LinkedList<Integer> indexList,Node newNode,int index){
         int j = 0;
         while (true) {
-            if (tempList.isEmpty() || (j == tempList.size() - 1)){
+            if (tempList.isEmpty() || (j == tempList.size())){
                 tempList.add(newNode);
                 indexList.add(index);
                 break;
@@ -93,4 +95,8 @@ class TextAnalyse {
         return NameList;
     }
 
+    @Override
+    public void run() {
+
+    }
 }
