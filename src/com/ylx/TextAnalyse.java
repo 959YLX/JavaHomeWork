@@ -3,21 +3,28 @@ package com.ylx;
 import java.util.LinkedList;
 
 /**
+ * 字符串处理类，用于对文本字符串进行抽象化，根据姓名提取出位置线性表
  * Created by ylx on 16/11/26.
  */
-public class TextAnalyse {
+class TextAnalyse {
 
     private String Article = null;
-    private int ArticleLength = 0;
 
-    public void setArticle(String article) {
+    void setArticle(String article) {
         if (article != null) {
             Article = article;
-            ArticleLength = article.length();
         }
     }
 
-    public LinkedList<Node> getLocationList(LinkedList<Node>[] ListArray){
+    LinkedList<Node> getLocationList(String[] names){
+        LinkedList<Node>[] ListArray = new LinkedList[names.length];
+        for (int i = 0; i < names.length; i++) {
+            ListArray[i] = getTextList(names[i]);
+        }
+        return getLocationList(ListArray);
+    }
+
+    private LinkedList<Node> getLocationList(LinkedList<Node>[] ListArray){
         LinkedList<Node> locationList = new LinkedList<>();
         LinkedList<Node> tempList = new LinkedList<>();
         LinkedList<Integer> indexList = new LinkedList<>();
@@ -33,7 +40,7 @@ public class TextAnalyse {
                         break;
                     }else if (j == tempList.size() - 1){
                         tempList.add(tempNode);
-                        indexList.add(j,i);
+                        indexList.add(i);
                         break;
                     }
                     j++;
@@ -49,7 +56,7 @@ public class TextAnalyse {
             int index = indexList.removeFirst();
             locationList.add(node);
             LinkedList<Node> list = ListArray[index];
-            if (!(list.size() == 0 || tempList.size() == 0)) {
+            if (!list.isEmpty()) {
                 Node TempNode = list.removeFirst();
                 insertNode(tempList, indexList, TempNode, index);
             }
@@ -60,12 +67,12 @@ public class TextAnalyse {
     private void insertNode(LinkedList<Node> tempList,LinkedList<Integer> indexList,Node newNode,int index){
         int j = 0;
         while (true) {
-            if (newNode.getLocation() <= tempList.get(j).getLocation()) {
-                tempList.add(j, newNode);
-                indexList.add(j,index);
-                break;
-            }else if (j == tempList.size() - 1){
+            if (tempList.isEmpty() || (j == tempList.size() - 1)){
                 tempList.add(newNode);
+                indexList.add(index);
+                break;
+            }else if (newNode.getLocation() <= tempList.get(j).getLocation()) {
+                tempList.add(j, newNode);
                 indexList.add(j,index);
                 break;
             }
@@ -73,7 +80,7 @@ public class TextAnalyse {
         }
     }
 
-    public LinkedList<Node> getTextList(String Name){
+    private LinkedList<Node> getTextList(String Name){
         int NameLength  = Name.length();
         LinkedList<Node> NameList = new LinkedList<>();
         int i = 0;

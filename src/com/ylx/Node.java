@@ -17,7 +17,7 @@ public class Node {
         return location;
     }
 
-    public String getName() {
+    String getName() {
         return Name;
     }
 }
