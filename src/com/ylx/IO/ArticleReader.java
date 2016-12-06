@@ -3,10 +3,7 @@ package com.ylx.IO;
 import com.ylx.Analyse.SubmitAnalyse;
 import com.ylx.Thread.AnalyseThread;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 
 /**
  * Created by ylx on 16/12/3.
@@ -20,7 +17,11 @@ public class ArticleReader implements Runnable{
     public ArticleReader(InputStream inputStream){
         if (inputStream != null){
             this.inputStream = inputStream;
-            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            try {
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             analyseThread = AnalyseThread.getAnalyseThread();
         }
     }
@@ -42,11 +43,6 @@ public class ArticleReader implements Runnable{
                 LineNumber++;
             }else{
                 break;
-            }
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }

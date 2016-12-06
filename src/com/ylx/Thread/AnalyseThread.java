@@ -3,6 +3,7 @@ package com.ylx.Thread;
 import com.ylx.Analyse.SubmitAnalyse;
 import com.ylx.Analyse.TextAnalyse;
 import com.ylx.IO.ArticleReader;
+import com.ylx.Main;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -35,15 +36,10 @@ public class AnalyseThread extends Thread {
 
     @Override
     public void run() {
-        while (true){
+        while (!Main.STOP){
             if (!TextQueue.isEmpty() && name != null){
                 SubmitAnalyse task = TextQueue.poll();
                 threadPool.addAnalyseTask(new TextAnalyse(task.getArticle(),name,task.getLineNumber()));
-            }
-            try {
-                sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }

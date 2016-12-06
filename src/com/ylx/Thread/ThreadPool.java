@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by ylx on 16/12/3.
  */
-public class ThreadPool {
+public class ThreadPool extends Thread{
 
-    private int maxTaskNumber = 100,corePoolSize = 2,maximumPoolSize = 4;
+    private int maxTaskNumber = 300,corePoolSize = 2,maximumPoolSize = 4;
     private long keepAliveTime = 10;
     private LinkedBlockingQueue<Runnable> TextTaskQueue = null;
     private ThreadPoolExecutor TaskThreadPool = null;
@@ -26,6 +26,7 @@ public class ThreadPool {
         TextTaskQueue = new LinkedBlockingQueue<>(maxTaskNumber);
         TaskThreadPool = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, keepAliveTime,
                 TimeUnit.MINUTES, TextTaskQueue, new ThreadPoolExecutor.CallerRunsPolicy());
+        start();
     }
 
     void close() {

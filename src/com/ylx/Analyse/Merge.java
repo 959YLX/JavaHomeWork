@@ -23,6 +23,7 @@ public class Merge {
     public void submit(int lineNumber,LinkedList<Node> textList){
         if (!textList.isEmpty())
             submitMap.put(lineNumber,textList);
+        //System.out.println(lineNumber);
     }
 
     public ConcurrentHashMap<Integer, LinkedList<Node>> getSubmitMap() {
