@@ -9,16 +9,16 @@ public class Node {
     private String Name = null;
     private int location = -1;
 
-    Node(String Name, int location){
+    public Node(String Name, int location){
         this.Name = Name;
         this.location = location;
     }
 
-    int getLocation() {
+    public int getLocation() {
         return location;
     }
 
-    String getName() {
+    public String getName() {
         return Name;
     }
 }

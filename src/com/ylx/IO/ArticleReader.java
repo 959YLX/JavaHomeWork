@@ -1,7 +1,7 @@
 package com.ylx.IO;
 
+import com.ylx.Analyse.SubmitAnalyse;
 import com.ylx.Thread.AnalyseThread;
-import com.ylx.Thread.ThreadPool;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,6 +27,7 @@ public class ArticleReader implements Runnable{
 
     @Override
     public void run() {
+        int LineNumber = 0;
         while (true){
             String text = null;
             if (bufferedReader != null){
@@ -37,7 +38,10 @@ public class ArticleReader implements Runnable{
                 }
             }
             if (text != null){
-                analyseThread.addText(text);
+                analyseThread.addText(new SubmitAnalyse(text,LineNumber));
+                LineNumber++;
+            }else{
+                break;
             }
             try {
                 Thread.sleep(10);

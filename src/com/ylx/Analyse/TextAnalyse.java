@@ -9,19 +9,32 @@ import java.util.LinkedList;
 public class TextAnalyse implements Runnable{
 
     private String Article = null;
+    private int LineNumber = 0;
+    private String[] names = null;
 
-    public TextAnalyse(){
-
+    public TextAnalyse(String Article,String[] names,int LineNumber){
+        if (!(Article == null || names == null)) {
+            this.Article = Article;
+            this.LineNumber = LineNumber;
+            this.names = names;
+        }
     }
 
-    private LinkedList<Node> getLocationList(String Article,String[] names){
-        if (Article == null || names == null) return null;
-        else{
-            this.Article = Article;
-        }
-        LinkedList<Node>[] ListArray = new LinkedList[names.length];
+    private LinkedList<Node> getLocationList(){
+        LinkedList[] ListArray = new LinkedList[names.length];
+        int j = 0;
         for (int i = 0; i < names.length; i++) {
-            ListArray[i] = getTextList(names[i]);
+            LinkedList<Node> list = getTextList(names[i]);
+            if (!list.isEmpty()){
+                ListArray[i-j] = list;
+            }else{
+                j++;
+            }
+        }
+        if (j != 0){
+            LinkedList[] finalList = new LinkedList[names.length-j];
+            System.arraycopy(ListArray,0,finalList,0,names.length-j);
+            return getLocationList(finalList);
         }
         return getLocationList(ListArray);
     }
@@ -31,8 +44,14 @@ public class TextAnalyse implements Runnable{
         LinkedList<Node> tempList = new LinkedList<>();
         LinkedList<Integer> indexList = new LinkedList<>();
         for (int i = 0; i < ListArray.length; i++) {
+
             LinkedList<Node> temp = ListArray[i];
-            Node tempNode = temp.removeFirst();
+            Node tempNode;
+            if (temp.size() != 0) {
+                tempNode = temp.removeFirst();
+            }else{
+                break;
+            }
             if (tempList.size() != 0) {
                 int j = 0;
                 while (true) {
@@ -97,6 +116,6 @@ public class TextAnalyse implements Runnable{
 
     @Override
     public void run() {
-
+        Merge.getMerge().submit(LineNumber,getLocationList());
     }
 }

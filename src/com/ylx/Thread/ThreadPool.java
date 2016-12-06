@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class ThreadPool {
 
-    private int maxTaskNumber = 100,corePoolSize = 3,maximumPoolSize = 5;
+    private int maxTaskNumber = 100,corePoolSize = 2,maximumPoolSize = 4;
     private long keepAliveTime = 10;
     private LinkedBlockingQueue<Runnable> TextTaskQueue = null;
     private ThreadPoolExecutor TaskThreadPool = null;
@@ -35,6 +35,5 @@ public class ThreadPool {
     void addAnalyseTask(TextAnalyse textAnalyseTask) {
         TaskThreadPool.execute(textAnalyseTask);
     }
-
 
 }
