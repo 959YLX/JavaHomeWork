@@ -12,7 +12,8 @@ public class ChoseFilePanel extends JPanel{
     private JButton ChoseButton = null;
     private JPanel left = null,right = null;
 
-    public ChoseFilePanel(){
+    ChoseFilePanel(Listener listener){
+        listener.setChoseFilePanel(this);
         FlowLayout flowLayout = new FlowLayout();
         left = new JPanel();
         right = new JPanel();
@@ -24,7 +25,7 @@ public class ChoseFilePanel extends JPanel{
         PathLabel.setVerticalTextPosition(SwingConstants.CENTER);
         left.add(PathLabel);
         ChoseButton = new JButton("打开");
-        ChoseButton.addActionListener(new Listener(this));
+        ChoseButton.addActionListener(listener);
         ChoseButton.setPreferredSize(new Dimension(50,30));
         right.add(ChoseButton);
         this.setPreferredSize(new Dimension(0,50));
@@ -33,8 +34,11 @@ public class ChoseFilePanel extends JPanel{
         this.add(right,BorderLayout.EAST);
     }
 
+    String getFilePath(){
+        return PathLabel.getText();
+    }
 
-    public void repaint(String Path) {
+    void repaint(String Path) {
         PathLabel.setText(Path);
         super.repaint();
     }

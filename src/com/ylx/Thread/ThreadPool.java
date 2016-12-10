@@ -18,7 +18,7 @@ public class ThreadPool extends Thread{
 
     private static ThreadPool threadPool = new ThreadPool();
 
-    public static ThreadPool getThreadPool(){ return threadPool; }
+    static ThreadPool getThreadPool(){ return threadPool; }
 
     private ThreadPool(){ init(); }
 
