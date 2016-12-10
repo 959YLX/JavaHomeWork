@@ -17,7 +17,7 @@ public class Main {
     public static volatile boolean STOP = false;
 
     public static String getMapInfo(Map<Integer,LinkedList<Node>> map){
-        String str = "";
+        String str = "result:\n";
         for (Map.Entry<Integer,LinkedList<Node>> entry : map.entrySet()){
             str += "\nkey:"+entry.getKey()+" --- value: ---";
             for (Node node : entry.getValue()){

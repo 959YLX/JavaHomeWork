@@ -26,6 +26,16 @@ public class ArticleReader implements Runnable{
         }
     }
 
+    public static int getFileLineNumber(String FilePath) throws IOException {
+        File file = new File(FilePath);
+        LineNumberReader lineNumberReader = new LineNumberReader(new FileReader(file));
+        lineNumberReader.skip(file.length());
+        int LineNumber = lineNumberReader.getLineNumber();
+        lineNumberReader.close();
+        System.out.println("line = "+LineNumber);
+        return LineNumber;
+    }
+
     @Override
     public void run() {
         int LineNumber = 0;

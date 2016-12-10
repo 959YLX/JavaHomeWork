@@ -4,6 +4,7 @@ import com.ylx.Analyse.SubmitAnalyse;
 import com.ylx.Analyse.TextAnalyse;
 import com.ylx.IO.ArticleReader;
 import com.ylx.Main;
+import com.ylx.UI.Listener;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -14,13 +15,13 @@ public class AnalyseThread extends Thread {
 
     private ConcurrentLinkedQueue<SubmitAnalyse> TextQueue = null;
     private ThreadPool threadPool = null;
-    private String[] name = null;
+    private volatile String[] name = null;
 
     private static AnalyseThread analyseThread = new AnalyseThread();
 
     public static AnalyseThread getAnalyseThread(){ return analyseThread; }
 
-    public void setName(String[] name) {
+    void setName(String[] name) {
         this.name = name;
     }
 
