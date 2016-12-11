@@ -12,7 +12,7 @@ public class AppearPanel extends JPanel {
     private JProgressBar appearBar = null;
 
     AppearPanel(String name, int MaxValue){
-        appearBar = new JProgressBar(0,MaxValue);
+        appearBar = new JProgressBar(0,MaxValue*100);
         nameLabel = new JLabel(name);
         timesLabel = new JLabel("0");
         init();
@@ -27,8 +27,15 @@ public class AppearPanel extends JPanel {
         this.add(timesLabel);
     }
 
+    void changeName(String name){ nameLabel.setText(name); }
+
     void updateProcess(int process){
         appearBar.setValue(process);
+        timesLabel.setText(String.valueOf(process));
+    }
+
+    void updateProcess(double process){
+        appearBar.setValue((int) (process*100));
         timesLabel.setText(String.valueOf(process));
     }
 

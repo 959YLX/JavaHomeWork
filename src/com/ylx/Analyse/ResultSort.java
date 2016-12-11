@@ -17,4 +17,30 @@ public class ResultSort {
         return names;
     }
 
+    public static double getMaxValue(Collection<Double> collection){
+        Object[] objects = collection.toArray();
+        Arrays.sort(objects);
+        return (double) objects[objects.length - 1];
+    }
+
+    public static String[] getRelations(String name,HashMap<Set<String>,Double> maps){
+        Map<String,Double> tempMap = new HashMap<>();
+        for (Map.Entry<Set<String>,Double> map : maps.entrySet()){
+            if (map.getKey().contains(name)){
+                map.getKey().forEach( s -> {
+                    if (!name.equals(s)){
+                        tempMap.put(s,map.getValue());
+                    }
+                });
+            }
+        }
+        String[] relations = new String[tempMap.size()];
+        ArrayList<Map.Entry<String, Double>> arrayList = new ArrayList<>(tempMap.entrySet());
+        arrayList.sort((Map.Entry<String, Double> o1, Map.Entry<String, Double> o2) -> o1.getValue() > o2.getValue() ? -1 : 1);
+        for (int i = 0; i < relations.length; i++) {
+            relations[i] = arrayList.get(i).getKey();
+        }
+        return relations;
+    }
+
 }

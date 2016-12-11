@@ -1,5 +1,6 @@
 package com.ylx.Analyse;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -10,8 +11,14 @@ public class RelationBean {
     private Set<String> relationSet = null;
     private double weight = -1d;
 
-    public void setRelationSet(Set<String> relationSet) {
-        this.relationSet = relationSet;
+    public boolean isRelation(String name1,String name2){
+        return (relationSet.contains(name1) && relationSet.contains(name2));
+    }
+
+    public void setRelationSet(String name1,String name2) {
+        relationSet = new HashSet<>();
+        relationSet.add(name1);
+        relationSet.add(name2);
     }
 
     public void setWeight(double weight) {

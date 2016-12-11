@@ -1,9 +1,6 @@
 package com.ylx.Analyse;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by ylx on 16/12/11.
@@ -85,6 +82,49 @@ public class PackResult {
 
         }
         return times;
+    }
+
+    private HashMap<Set<String>, Double> getRelation(Map<Integer,LinkedList<Node>> resultMap){
+        ArrayList<RelationBean> relationList = new ArrayList<>(45);
+        HashMap<String,Integer[]> newestLocation = new HashMap<>();
+        String last = "";
+        for (PersonBean personBean : persons){
+            newestLocation.put(personBean.getName(),new Integer[]{-1,-1});
+        }
+
+        for (int i = 0; i < persons.length; i++) {
+            for (int j = i+1; j < persons.length; j++) {
+                RelationBean relationBean = new RelationBean();
+                relationBean.setRelationSet(persons[i].getName(),persons[j].getName());
+                relationList.add(relationBean);
+            }
+        }
+
+        for (Map.Entry<Integer,LinkedList<Node>> entry : resultMap.entrySet()){
+
+            int LineNumber = entry.getKey();
+            LinkedList<Node> list = entry.getValue();
+            for (Node node : list){
+                String realName = aliasMaps.get(node.getName());
+                if (!realName.equals(last) && !last.equals("")){
+
+                    for (RelationBean relationBean:relationList){
+                        if (relationBean.isRelation(realName,last)){
+                            //记录权值
+                        }
+                    }
+
+                    last = realName;
+                }else{
+                    newestLocation.put(realName,new Integer[]{LineNumber,node.getLocation()});
+                    last = realName;
+                }
+            }
+
+        }
+
+    return null;
+
     }
 
 }

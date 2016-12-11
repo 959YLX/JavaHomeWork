@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Created by ylx on 16/12/7.
@@ -22,6 +23,7 @@ public class Listener implements ActionListener,ChangeListener {
     private ChoseFilePanel choseFilePanel = null;
     private NamePanel namePanel = null;
     private AnalysePanel analysePanel = null;
+    private ResultFrame resultFrame = null;
 
     Listener(){}
 
@@ -34,6 +36,10 @@ public class Listener implements ActionListener,ChangeListener {
     }
 
     void setAnalysePanel(AnalysePanel analysePanel){ this.analysePanel = analysePanel; }
+
+    public void setResultFrame(ResultFrame resultFrame) {
+        this.resultFrame = resultFrame;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -67,6 +73,11 @@ public class Listener implements ActionListener,ChangeListener {
                 }
                 break;
             }
+            case "查找":{
+                String name = resultFrame.getRelationPanel().getRelationSearchPanel().getText();
+                AnimationThread.getAnimationThread().startAnimation(name);
+                break;
+            }
         }
     }
 
@@ -82,7 +93,10 @@ public class Listener implements ActionListener,ChangeListener {
                 AnimationThread.getAnimationThread().startAnimation(AnimationThread.SPAN);
                 break;
             }
-            case 2:{ break; }
+            case 2:{
+
+                break;
+            }
         }
     }
 }

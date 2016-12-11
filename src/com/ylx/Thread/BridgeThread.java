@@ -3,13 +3,12 @@ package com.ylx.Thread;
 import com.ylx.Analyse.*;
 import com.ylx.IO.ArticleReader;
 import com.ylx.Main;
-import com.ylx.UI.ResultFrame;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 /**
  * Created by ylx on 16/12/10.
@@ -56,7 +55,8 @@ public class BridgeThread extends Thread {
             try {
                 sleep(500);
                 if (Merge.FinishMerge){
-                    ConcurrentHashMap<Integer,LinkedList<Node>> listHashMap = Merge.getMerge().getSubmitMap();
+                    ConcurrentSkipListMap<Integer, LinkedList<Node>> listHashMap = Merge.getMerge().getSubmitMap();
+                    System.out.println(Main.getMapInfo(listHashMap));
                     AnimationThread.getAnimationThread().setResult(packResult.getResult(listHashMap));
                     AnimationThread.getAnimationThread().startAnimation(AnimationThread.TIMES);
                     Merge.FinishMerge = false;

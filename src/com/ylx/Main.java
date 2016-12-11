@@ -1,6 +1,7 @@
 package com.ylx;
 
 import com.ylx.Analyse.Node;
+import com.ylx.Analyse.RelationBean;
 import com.ylx.Analyse.ResultSort;
 import com.ylx.IO.ArticleReader;
 import com.ylx.Thread.AnalyseThread;
@@ -33,7 +34,6 @@ public class Main {
 
     public static void main(String[] args) {
         new MainFrame("lala");
-
     }
 
 }

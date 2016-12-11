@@ -37,4 +37,13 @@ public class SortPanel extends JPanel{
         appearPanels[maps.get(name)].updateProcess(process);
     }
 
+    public void setAnimation(String name,double process){ appearPanels[maps.get(name)].updateProcess(process); }
+
+    public void changeNames(String[] names){
+        for (int i = 0; i < names.length; i++) {
+            appearPanels[i].changeName(names[i]);
+        }
+        this.repaint();
+    }
+
 }

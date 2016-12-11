@@ -10,14 +10,14 @@ public class AnalyseResult {
 
     private HashMap<String,Integer> timesMap = null,spanMap = null;
     private Set<String> closeRelation = null, unclosedRelation = null;
-    private HashMap<Set<String>,Integer> relationMap = null;
+    private HashMap<Set<String>, Double> relationMap = null;
     private String[] names = null;
 
     public void setCloseRelation(Set<String> closeRelation) {
         this.closeRelation = closeRelation;
     }
 
-    public void setRelationMap(HashMap<Set<String>, Integer> relationMap) {
+    public void setRelationMap(HashMap<Set<String>, Double> relationMap) {
         this.relationMap = relationMap;
     }
 
@@ -33,7 +33,7 @@ public class AnalyseResult {
         this.unclosedRelation = unclosedRelation;
     }
 
-    public HashMap<Set<String>, Integer> getRelationMap() {
+    public HashMap<Set<String>, Double> getRelationMap() {
         return relationMap;
     }
 

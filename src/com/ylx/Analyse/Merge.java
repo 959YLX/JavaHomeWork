@@ -5,6 +5,7 @@ import com.ylx.UI.AnalysePanel;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 /**
  * Created by ylx on 16/12/3.
@@ -14,7 +15,7 @@ public class Merge {
     private volatile static Merge merge = new Merge();
 
     private ArrayList<LinkedList<Node>> finalList = null;
-    private ConcurrentHashMap<Integer,LinkedList<Node>> submitMap = null;
+    private ConcurrentSkipListMap<Integer, LinkedList<Node>> submitMap = null;
     private AnalysePanel processPanel = null;
     private volatile int MaxLineNumber = 0,totalLineNumber = 0;
 
@@ -29,7 +30,7 @@ public class Merge {
 
     private Merge(){
         finalList = new ArrayList<>();
-        submitMap = new ConcurrentHashMap<>();
+        submitMap = new ConcurrentSkipListMap<>();
     }
 
     void submit(int lineNumber, LinkedList<Node> textList){
@@ -43,7 +44,7 @@ public class Merge {
         }
     }
 
-    public ConcurrentHashMap<Integer, LinkedList<Node>> getSubmitMap() {
+    public ConcurrentSkipListMap<Integer, LinkedList<Node>> getSubmitMap() {
         return submitMap;
     }
 }

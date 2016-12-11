@@ -2,6 +2,7 @@ package com.ylx.UI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.LinkedList;
 
 /**
  * Created by ylx on 16/12/10.
