@@ -18,11 +18,12 @@ public class MainFrame extends JFrame{
         init();
     }
 
+
     private void init(){
         this.setSize(600,500);
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         choseFilePanel = new ChoseFilePanel(listener);
         choseFilePanel.setPreferredSize(new Dimension(0,55));
         namePanel = new NamePanel(listener);

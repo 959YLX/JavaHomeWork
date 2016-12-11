@@ -9,7 +9,7 @@ import java.awt.*;
 public class AnalysePanel extends JPanel {
 
     private JButton analyse = null;
-    private ProcessBar process = null;
+    private AnalyseProcessBar process = null;
     private int totalLineNumber = -1;
 
     AnalysePanel(Listener listener){
@@ -24,7 +24,7 @@ public class AnalysePanel extends JPanel {
 
     void changeToProcess(int totalLineNumber){
         this.totalLineNumber = totalLineNumber;
-        process = new ProcessBar(totalLineNumber);
+        process = new AnalyseProcessBar(totalLineNumber);
         this.removeAll();
         this.add(process);
         this.validate();

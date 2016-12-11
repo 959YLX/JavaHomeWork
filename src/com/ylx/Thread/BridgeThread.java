@@ -1,11 +1,9 @@
 package com.ylx.Thread;
 
-import com.ylx.Analyse.AnalyseTask;
-import com.ylx.Analyse.Merge;
-import com.ylx.Analyse.Node;
-import com.ylx.Analyse.PersonBean;
+import com.ylx.Analyse.*;
 import com.ylx.IO.ArticleReader;
 import com.ylx.Main;
+import com.ylx.UI.ResultFrame;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,10 +17,14 @@ import java.util.concurrent.ConcurrentHashMap;
 public class BridgeThread extends Thread {
     private static BridgeThread bridgeThread = new BridgeThread();
     private AnalyseTask task = null;
-
+    private PackResult packResult = null;
     private BridgeThread(){ start(); }
 
     public static BridgeThread getBridgeThread(){ return bridgeThread; }
+
+    public void setPackResult(PackResult packResult) {
+        this.packResult = packResult;
+    }
 
     public void addAnalyseTask(AnalyseTask task){
         this.task = task;
@@ -55,7 +57,8 @@ public class BridgeThread extends Thread {
                 sleep(500);
                 if (Merge.FinishMerge){
                     ConcurrentHashMap<Integer,LinkedList<Node>> listHashMap = Merge.getMerge().getSubmitMap();
-                    System.out.println(Main.getMapInfo(listHashMap));
+                    AnimationThread.getAnimationThread().setResult(packResult.getResult(listHashMap));
+                    AnimationThread.getAnimationThread().startAnimation(AnimationThread.TIMES);
                     Merge.FinishMerge = false;
                 }
             } catch (InterruptedException e) {

@@ -32,7 +32,6 @@ public class ArticleReader implements Runnable{
         lineNumberReader.skip(file.length());
         int LineNumber = lineNumberReader.getLineNumber();
         lineNumberReader.close();
-        System.out.println("line = "+LineNumber);
         return LineNumber;
     }
 

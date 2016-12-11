@@ -1,13 +1,17 @@
 package com.ylx;
 
 import com.ylx.Analyse.Node;
+import com.ylx.Analyse.ResultSort;
 import com.ylx.IO.ArticleReader;
 import com.ylx.Thread.AnalyseThread;
 import com.ylx.UI.MainFrame;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.function.BiConsumer;
 
 /**
  * Created by ylx on 16/11/26.
@@ -28,7 +32,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        new MainFrame("lalala");
+        new MainFrame("lala");
+
     }
 
 }

@@ -33,17 +33,12 @@ public class Merge {
     }
 
     void submit(int lineNumber, LinkedList<Node> textList){
-//        System.out.println("#####");
-//        System.out.println(MaxLineNumber);
-//        System.out.println(lineNumber);
-//        System.out.println("#####");
         if (lineNumber > MaxLineNumber)
             MaxLineNumber = lineNumber;
         if (!textList.isEmpty())
             submitMap.put(lineNumber,textList);
         processPanel.setProcess(MaxLineNumber);
         if (lineNumber == totalLineNumber) {
-            //System.out.println("--------------");
             FinishMerge = true;
         }
     }

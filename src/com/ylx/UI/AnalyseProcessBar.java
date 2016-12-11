@@ -6,13 +6,13 @@ import java.awt.*;
 /**
  * Created by ylx on 16/12/10.
  */
-public class ProcessBar extends JPanel {
+public class AnalyseProcessBar extends JPanel {
 
     private JProgressBar progressBar = null;
     private JLabel label = null;
     private float TotalLineNumber = 0;
 
-    public ProcessBar(int TotalLineNumber){
+    AnalyseProcessBar(int TotalLineNumber){
         this.TotalLineNumber = (float)TotalLineNumber;
         progressBar = new JProgressBar(0,100);
         label = new JLabel("共"+(TotalLineNumber+1)+"行,正在分析第1行");
@@ -27,7 +27,7 @@ public class ProcessBar extends JPanel {
         this.add(label);
     }
 
-    public void setProgress(int currentLineNumber){
+    void setProgress(int currentLineNumber){
         int process;
         if (currentLineNumber != TotalLineNumber) {
             process = (int) ((currentLineNumber / TotalLineNumber) * 100);

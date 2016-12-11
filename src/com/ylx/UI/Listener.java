@@ -1,10 +1,15 @@
 package com.ylx.UI;
 
 import com.ylx.Analyse.AnalyseTask;
+import com.ylx.Analyse.PackResult;
 import com.ylx.Analyse.PersonBean;
 import com.ylx.IO.ArticleReader;
+import com.ylx.Thread.AnimationThread;
 import com.ylx.Thread.BridgeThread;
 
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -13,7 +18,7 @@ import java.io.IOException;
 /**
  * Created by ylx on 16/12/7.
  */
-public class Listener implements ActionListener {
+public class Listener implements ActionListener,ChangeListener {
     private ChoseFilePanel choseFilePanel = null;
     private NamePanel namePanel = null;
     private AnalysePanel analysePanel = null;
@@ -55,12 +60,29 @@ public class Listener implements ActionListener {
                     analyseTask.setFilePath(FilePath);
                     analyseTask.setPersonsInfo(personsInfo);
                     analyseTask.setProcessPanel(analysePanel);
+                    BridgeThread.getBridgeThread().setPackResult(new PackResult(personsInfo));
                     BridgeThread.getBridgeThread().addAnalyseTask(analyseTask);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
                 break;
             }
+        }
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        int tabs = ((JTabbedPane)e.getSource()).getSelectedIndex();
+        switch (tabs){
+            case 0:{
+                AnimationThread.getAnimationThread().startAnimation(AnimationThread.TIMES);
+                break;
+            }
+            case 1:{
+                AnimationThread.getAnimationThread().startAnimation(AnimationThread.SPAN);
+                break;
+            }
+            case 2:{ break; }
         }
     }
 }
