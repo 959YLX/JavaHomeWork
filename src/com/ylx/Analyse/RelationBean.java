@@ -9,7 +9,7 @@ import java.util.Set;
 public class RelationBean {
 
     private Set<String> relationSet = null;
-    private double weight = -1d;
+    private double weight = 1.0;
 
     public boolean isRelation(String name1,String name2){
         return (relationSet.contains(name1) && relationSet.contains(name2));
