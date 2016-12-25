@@ -7,6 +7,8 @@ import com.ylx.Thread.AnalyseThread;
 import com.ylx.UI.MainFrame;
 
 import java.io.*;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
