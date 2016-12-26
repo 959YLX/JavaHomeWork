@@ -6,11 +6,11 @@ import java.awt.*;
 /**
  * Created by ylx on 16/12/7.
  */
-public class NameInputPanel extends JPanel {
+class NameInputPanel extends JPanel {
     private JLabel label = null;
     private JTextField textField = null;
 
-    public NameInputPanel(boolean isRealName){
+    NameInputPanel(boolean isRealName){
         if (isRealName){
             label = new JLabel("姓名:");
         }else{

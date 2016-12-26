@@ -14,8 +14,8 @@ public class SortPanel extends JPanel{
     private HashMap<String,Integer> maps = null;
     private int height = 0;
 
-    public SortPanel(String[] names, int MaxValue){
-        appearPanels = new  AppearPanel[names.length];
+    SortPanel(String[] names, int MaxValue){
+        appearPanels = new AppearPanel[names.length];
         maps = new HashMap<>();
         for (int i = 0; i < names.length; i++) {
             appearPanels[i] = new AppearPanel(names[i],MaxValue);
@@ -25,9 +25,28 @@ public class SortPanel extends JPanel{
         init();
     }
 
+    SortPanel(String[] names, int MaxValue, int weight){
+        appearPanels = new AppearPanel[names.length];
+        maps = new HashMap<>();
+        for (int i = 0; i < names.length; i++) {
+            appearPanels[i] = new AppearPanel(names[i],MaxValue,35);
+            maps.put(names[i],i);
+            height += 40;
+        }
+        init(weight);
+    }
+
     private void init(){
         this.setLayout(new FlowLayout());
         this.setPreferredSize(new Dimension(400,height));
+        for (AppearPanel appearPanel : appearPanels){
+            this.add(appearPanel);
+        }
+    }
+
+    private void init(int weight){
+        this.setLayout(new FlowLayout());
+        this.setPreferredSize(new Dimension(weight,height));
         for (AppearPanel appearPanel : appearPanels){
             this.add(appearPanel);
         }

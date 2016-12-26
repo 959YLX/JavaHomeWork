@@ -10,30 +10,38 @@ public class AnalyseResult {
 
     private HashMap<String,Integer> timesMap = null,spanMap = null;
     private Set<String> closeRelation = null, unclosedRelation = null;
-    private HashMap<Set<String>,Integer> relationMap = null;
-    private String[] names = null;
+    private HashMap<Set<String>,Double> relationMap = null;
+    private double closeValue = 0d,unclosedValue = 0d;
 
-    public void setCloseRelation(Set<String> closeRelation) {
+    void setCloseValue(double closeValue) {
+        this.closeValue = closeValue;
+    }
+
+    void setUnclosedValue(double unclosedValue) {
+        this.unclosedValue = unclosedValue;
+    }
+
+    void setCloseRelation(Set<String> closeRelation) {
         this.closeRelation = closeRelation;
     }
 
-    public void setRelationMap(HashMap<Set<String>, Integer> relationMap) {
+    void setRelationMap(HashMap<Set<String>, Double> relationMap) {
         this.relationMap = relationMap;
     }
 
-    public void setSpanMap(HashMap<String, Integer> spanMap) {
+    void setSpanMap(HashMap<String, Integer> spanMap) {
         this.spanMap = spanMap;
     }
 
-    public void setTimesMap(HashMap<String, Integer> timesMap) {
+    void setTimesMap(HashMap<String, Integer> timesMap) {
         this.timesMap = timesMap;
     }
 
-    public void setUnclosedRelation(Set<String> unclosedRelation) {
+    void setUnclosedRelation(Set<String> unclosedRelation) {
         this.unclosedRelation = unclosedRelation;
     }
 
-    public HashMap<Set<String>, Integer> getRelationMap() {
+    public HashMap<Set<String>, Double> getRelationMap() {
         return relationMap;
     }
 
@@ -51,6 +59,14 @@ public class AnalyseResult {
 
     public HashMap<String, Integer> getTimesMap() {
         return timesMap;
+    }
+
+    public double getCloseValue() {
+        return closeValue;
+    }
+
+    public double getUnclosedValue() {
+        return unclosedValue;
     }
 
 }

@@ -3,7 +3,7 @@ package com.ylx.Analyse;
 /**
  * Created by ylx on 16/12/11.
  */
-public class MaxminBean {
+class MaxminBean {
 
     private int MaxLine = 0,MinLine = 0;
 

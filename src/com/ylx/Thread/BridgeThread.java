@@ -16,7 +16,6 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class BridgeThread extends Thread {
     private static BridgeThread bridgeThread = new BridgeThread();
-    private AnalyseTask task = null;
     private PackResult packResult = null;
     private BridgeThread(){ start(); }
 
@@ -27,7 +26,6 @@ public class BridgeThread extends Thread {
     }
 
     public void addAnalyseTask(AnalyseTask task){
-        this.task = task;
         try {
             InputStream inputStream = new FileInputStream(task.getFilePath());
             PersonBean[] personBeans = task.getPersonsInfo();

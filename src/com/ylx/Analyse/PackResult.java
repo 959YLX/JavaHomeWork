@@ -1,8 +1,6 @@
 package com.ylx.Analyse;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by ylx on 16/12/11.
@@ -37,8 +35,35 @@ public class PackResult {
         AnalyseResult result = new AnalyseResult();
         result.setTimesMap(getPersonTimes(resultMap));
         result.setSpanMap(getPersonSpan(resultMap));
-        RelationBean[][] relationBeans = getRelations(resultMap);
+        setRelations(result,getRelations(resultMap));
         return result;
+    }
+
+    private void setRelations(AnalyseResult result,RelationBean[][] relationBeans){
+        double max = 1d,min = 100000d;
+        Set<String> closed = null,unClosed = null;
+        HashMap<Set<String>,Double> relation = new HashMap<>();
+        for (int i = 0; i < amountPerson; i++) {
+            for (int j = i; j < amountPerson; j++) {
+                RelationBean relationBean = relationBeans[i][j];
+                double weight = relationBean.getWeight();
+                if (i != j)
+                    relation.put(relationBean.getRelationSet(),weight);
+                if (weight > max){
+                    max = weight;
+                    closed = relationBean.getRelationSet();
+                }
+                if (weight < min && weight != 0d){
+                    min = weight;
+                    unClosed = relationBean.getRelationSet();
+                }
+            }
+        }
+        result.setCloseRelation(closed);
+        result.setUnclosedRelation(unClosed);
+        result.setCloseValue(max);
+        result.setUnclosedValue(min);
+        result.setRelationMap(relation);
     }
 
     private RelationBean[][] getRelations(Map<Integer,LinkedList<Node>> resultMap){

@@ -7,16 +7,14 @@ import java.util.Locale;
 /**
  * Created by ylx on 16/12/7.
  */
-public class ChoseFilePanel extends JPanel{
+class ChoseFilePanel extends JPanel{
     private JLabel PathLabel = null;
-    private JButton ChoseButton = null;
-    private JPanel left = null,right = null;
 
     ChoseFilePanel(Listener listener){
         listener.setChoseFilePanel(this);
         FlowLayout flowLayout = new FlowLayout();
-        left = new JPanel();
-        right = new JPanel();
+        JPanel left = new JPanel();
+        JPanel right = new JPanel();
         left.setLayout(flowLayout);
         right.setLayout(flowLayout);
         PathLabel = new JLabel("/User/ylx/Desktop");
@@ -24,10 +22,10 @@ public class ChoseFilePanel extends JPanel{
         PathLabel.setHorizontalTextPosition(SwingConstants.CENTER);
         PathLabel.setVerticalTextPosition(SwingConstants.CENTER);
         left.add(PathLabel);
-        ChoseButton = new JButton("打开");
-        ChoseButton.addActionListener(listener);
-        ChoseButton.setPreferredSize(new Dimension(50,30));
-        right.add(ChoseButton);
+        JButton choseButton = new JButton("打开");
+        choseButton.addActionListener(listener);
+        choseButton.setPreferredSize(new Dimension(50,30));
+        right.add(choseButton);
         this.setPreferredSize(new Dimension(0,50));
         this.setLayout(new BorderLayout());
         this.add(left,BorderLayout.WEST);

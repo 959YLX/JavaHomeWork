@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by ylx on 16/12/7.
  */
-public class NamePanel extends JPanel{
+class NamePanel extends JPanel{
 
     private ArrayList<NameAddPanel> nameList = null;
     private JButton AddButton = null;
@@ -46,7 +46,7 @@ public class NamePanel extends JPanel{
         this.repaint();
     }
 
-    public PersonBean[] getPersonNameInfo(){
+    PersonBean[] getPersonNameInfo(){
         PersonBean[] personBeans = new PersonBean[nameList.size()];
         for (int i = 0; i < nameList.size(); i++) {
             personBeans[i] = nameList.get(i).getPersonBean();

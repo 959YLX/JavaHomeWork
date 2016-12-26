@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by ylx on 16/12/7.
  */
-public class NameAddPanel extends JPanel {
+class NameAddPanel extends JPanel {
 
     private NameInputPanel[] nameInputPanels = null;
 

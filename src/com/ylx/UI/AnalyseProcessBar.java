@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by ylx on 16/12/10.
  */
-public class AnalyseProcessBar extends JPanel {
+class AnalyseProcessBar extends JPanel {
 
     private JProgressBar progressBar = null;
     private JLabel label = null;

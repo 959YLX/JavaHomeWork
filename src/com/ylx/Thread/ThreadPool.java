@@ -29,9 +29,6 @@ public class ThreadPool extends Thread{
         start();
     }
 
-    void close() {
-        TaskThreadPool.shutdown();
-    }
 
     void addAnalyseTask(TextAnalyse textAnalyseTask) {
         TaskThreadPool.execute(textAnalyseTask);

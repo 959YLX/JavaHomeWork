@@ -10,13 +10,11 @@ import java.io.*;
  */
 public class ArticleReader implements Runnable{
 
-    private InputStream inputStream = null;
     private BufferedReader bufferedReader = null;
     private AnalyseThread analyseThread = null;
 
     public ArticleReader(InputStream inputStream){
         if (inputStream != null){
-            this.inputStream = inputStream;
             try {
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
             } catch (UnsupportedEncodingException e) {

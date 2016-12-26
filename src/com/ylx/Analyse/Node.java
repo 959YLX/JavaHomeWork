@@ -9,7 +9,7 @@ public class Node {
     private String Name = null;
     private int location = -1;
 
-    public Node(String Name, int location){
+    Node(String Name, int location){
         this.Name = Name;
         this.location = location;
     }

@@ -11,13 +11,15 @@ public class ResultFrame extends JFrame {
     private JTabbedPane tabbedPane = null;
     private SortPanel timesPanel = null,spanPanel = null;
     private RelationPanel relation = null;
+    private Listener listener = null;
 
 
     public ResultFrame(String[] TimesName, int TimesMax,String[] SpanName,int SpanMax){
         tabbedPane = new JTabbedPane();
         timesPanel = new SortPanel(TimesName,TimesMax);
         spanPanel = new SortPanel(SpanName,SpanMax);
-        relation = new RelationPanel();
+        listener = new Listener();
+        relation = new RelationPanel(listener);
         init();
     }
 
@@ -37,7 +39,7 @@ public class ResultFrame extends JFrame {
         tabbedPane.add("次数",timesPanel);
         tabbedPane.add("篇幅",spanPanel);
         tabbedPane.add("关系",relation);
-        tabbedPane.addChangeListener(new Listener());
+        tabbedPane.addChangeListener(listener);
         tabbedPane.setPreferredSize(new Dimension(400,500));
         this.add(tabbedPane);
         this.setVisible(true);

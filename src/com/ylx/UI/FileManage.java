@@ -8,13 +8,12 @@ import java.io.File;
 /**
  * Created by ylx on 16/12/7.
  */
-public class FileManage {
+class FileManage {
 
     private Component parent = null;
     private JFileChooser jFileChooser = null;
-    private FileNameExtensionFilter fileNameExtensionFilter = null;
 
-    public FileManage(Component parent){
+    FileManage(Component parent){
         if (parent != null) {
             this.parent = parent;
             init();
@@ -22,18 +21,17 @@ public class FileManage {
     }
 
     private void init(){
-        fileNameExtensionFilter = new FileNameExtensionFilter("文本文件","txt");
+        FileNameExtensionFilter fileNameExtensionFilter = new FileNameExtensionFilter("文本文件", "txt");
         jFileChooser = new JFileChooser("~");
         jFileChooser.setDialogTitle("选择文件");
         jFileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
         jFileChooser.setFileFilter(fileNameExtensionFilter);
     }
 
-    public File getOpenFile(){
+    File getOpenFile(){
         if (jFileChooser != null){
             jFileChooser.showOpenDialog(parent);
-            File file = jFileChooser.getSelectedFile();
-            return file;
+            return jFileChooser.getSelectedFile();
         }
         return null;
     }

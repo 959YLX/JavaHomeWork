@@ -1,31 +1,31 @@
 package com.ylx.Analyse;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by ylx on 16/12/11.
  */
-public class RelationBean {
+class RelationBean {
 
-    private String X_Name = null, Y_Name = null;
+    private Set<String> relationSet = null;
     private double weight = 1d;
 
-    public RelationBean(String X_Name,String Y_Name){
-        this.X_Name = X_Name;
-        this.Y_Name = Y_Name;
+    RelationBean(String X_Name, String Y_Name){
+        relationSet = new HashSet<>(2);
+        relationSet.add(X_Name);
+        relationSet.add(Y_Name);
     }
 
-    public String getX_Name() {
-        return X_Name;
+    Set<String> getRelationSet() {
+        return relationSet;
     }
 
-    public String getY_Name() {
-        return Y_Name;
-    }
-
-    public void setWeight(double weight) {
+    void setWeight(double weight) {
         this.weight = weight;
     }
 
-    public double getWeight() {
+    double getWeight() {
         return weight;
     }
 

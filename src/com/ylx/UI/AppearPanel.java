@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by ylx on 16/12/11.
  */
-public class AppearPanel extends JPanel {
+class AppearPanel extends JPanel {
 
     private JLabel nameLabel = null,timesLabel = null;
     private JProgressBar appearBar = null;
@@ -18,9 +18,25 @@ public class AppearPanel extends JPanel {
         init();
     }
 
+    AppearPanel(String name, int MaxValue,int height){
+        appearBar = new JProgressBar(0,MaxValue);
+        nameLabel = new JLabel(name);
+        timesLabel = new JLabel("0");
+        init(height);
+    }
+
     private void init(){
         this.setLayout(new FlowLayout());
         this.setPreferredSize(new Dimension(550,40));
+        appearBar.setValue(0);
+        this.add(nameLabel);
+        this.add(appearBar);
+        this.add(timesLabel);
+    }
+
+    private void init(int height){
+        this.setLayout(new FlowLayout());
+        this.setPreferredSize(new Dimension(550,height));
         appearBar.setValue(0);
         this.add(nameLabel);
         this.add(appearBar);

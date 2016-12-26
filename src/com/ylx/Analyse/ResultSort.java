@@ -17,4 +17,24 @@ public class ResultSort {
         return names;
     }
 
+    public static String[] getSortSearchNames(HashMap<Set<String>, Double> map,String searchName){
+        HashMap<Set<String>, Double> temp = new HashMap<>();
+        for (Map.Entry<Set<String>, Double> entry : map.entrySet()){
+            if (entry.getKey().contains(searchName)){
+                temp.put(entry.getKey(),entry.getValue());
+            }
+        }
+        String[] names = new String[temp.size()];
+        ArrayList<Map.Entry<Set<String>, Double>> arrayList = new ArrayList<>(temp.entrySet());
+        arrayList.sort((Map.Entry<Set<String>, Double> o1,Map.Entry<Set<String>, Double> o2) -> o1.getValue() > o2.getValue() ? -1 : 1);
+        for (int i = 0;i < arrayList.size();i++){
+            for (String s : arrayList.get(i).getKey()){
+                if (!s.equals(searchName)){
+                    names[i] = s;
+                }
+            }
+        }
+        return names;
+    }
+
 }
