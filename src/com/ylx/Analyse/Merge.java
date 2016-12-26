@@ -13,7 +13,6 @@ public class Merge {
 
     private volatile static Merge merge = new Merge();
 
-    private ArrayList<LinkedList<Node>> finalList = null;
     private ConcurrentHashMap<Integer,LinkedList<Node>> submitMap = null;
     private AnalysePanel processPanel = null;
     private volatile int MaxLineNumber = 0,totalLineNumber = 0;
@@ -28,7 +27,7 @@ public class Merge {
     public static Merge getMerge(){ return merge; }
 
     private Merge(){
-        finalList = new ArrayList<>();
+        ArrayList<LinkedList<Node>> finalList = new ArrayList<>();
         submitMap = new ConcurrentHashMap<>();
     }
 

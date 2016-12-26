@@ -1,17 +1,24 @@
 package com.ylx.Analyse;
 
-import java.util.Set;
-
 /**
  * Created by ylx on 16/12/11.
  */
 public class RelationBean {
 
-    private Set<String> relationSet = null;
-    private double weight = -1d;
+    private String X_Name = null, Y_Name = null;
+    private double weight = 1d;
 
-    public void setRelationSet(Set<String> relationSet) {
-        this.relationSet = relationSet;
+    public RelationBean(String X_Name,String Y_Name){
+        this.X_Name = X_Name;
+        this.Y_Name = Y_Name;
+    }
+
+    public String getX_Name() {
+        return X_Name;
+    }
+
+    public String getY_Name() {
+        return Y_Name;
     }
 
     public void setWeight(double weight) {
@@ -22,7 +29,4 @@ public class RelationBean {
         return weight;
     }
 
-    public Set<String> getRelationSet() {
-        return relationSet;
-    }
 }

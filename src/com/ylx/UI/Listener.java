@@ -60,7 +60,7 @@ public class Listener implements ActionListener,ChangeListener {
                     analyseTask.setFilePath(FilePath);
                     analyseTask.setPersonsInfo(personsInfo);
                     analyseTask.setProcessPanel(analysePanel);
-                    BridgeThread.getBridgeThread().setPackResult(new PackResult(personsInfo));
+                    BridgeThread.getBridgeThread().setPackResult(new PackResult(personsInfo,LineNumber));
                     BridgeThread.getBridgeThread().addAnalyseTask(analyseTask);
                 } catch (IOException e1) {
                     e1.printStackTrace();
